@@ -15,15 +15,13 @@ class AppServiceProvider extends AbstractServiceProvider implements BootableServ
 
     public function register(): void
     {
-        $this->getContainer()->add('name', function () {
-            return 'moh';
-        });
+ 
     }
 
     public function provides(string $id): bool
     {
         $services = [
-            'name'
+
         ];
 
         return in_array($id, $services);
