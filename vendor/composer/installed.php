@@ -3,7 +3,7 @@
         'name' => '__root__',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '182eb7da4defc7de1ea07e47d893914a5b115427',
+        'reference' => 'fa1706d4ff8ae5092390b2b1a5a1573b72a332e9',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         '__root__' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '182eb7da4defc7de1ea07e47d893914a5b115427',
+            'reference' => 'fa1706d4ff8ae5092390b2b1a5a1573b72a332e9',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -91,6 +91,15 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
+        'league/container' => array(
+            'pretty_version' => '4.2.2',
+            'version' => '4.2.2.0',
+            'reference' => 'ff346319ca1ff0e78277dc2311a42107cc1aab88',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../league/container',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'nesbot/carbon' => array(
             'pretty_version' => '3.6.0',
             'version' => '3.6.0.0',
@@ -99,6 +108,12 @@
             'install_path' => __DIR__ . '/../nesbot/carbon',
             'aliases' => array(),
             'dev_requirement' => false,
+        ),
+        'orno/di' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => '~2.0',
+            ),
         ),
         'psr/clock' => array(
             'pretty_version' => '1.0.0',
@@ -123,6 +138,12 @@
             'install_path' => __DIR__ . '/../psr/container',
             'aliases' => array(),
             'dev_requirement' => false,
+        ),
+        'psr/container-implementation' => array(
+            'dev_requirement' => false,
+            'provided' => array(
+                0 => '^1.0',
+            ),
         ),
         'psr/log-implementation' => array(
             'dev_requirement' => false,
