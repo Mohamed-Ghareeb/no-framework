@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit6dda519547dfe7c6e30fdfb1a8ae6b61
+class ComposerStaticInitb2637bfdc9c35c32da5e88c416ac7c36
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -21,6 +21,8 @@ class ComposerStaticInit6dda519547dfe7c6e30fdfb1a8ae6b61
         'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
+        '253c157292f75eb38082b5acb06f3f01' => __DIR__ . '/..' . '/nikic/fast-route/src/functions.php',
+        '538ca81a9a966a6716601ecf48f4eaef' => __DIR__ . '/..' . '/opis/closure/functions.php',
         '3bd81c9b8fcc150b69d8b63b4d2ccf23' => __DIR__ . '/..' . '/spatie/flare-client-php/src/helpers.php',
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
         'd767e4fc2dc52fe66584ab8c6684783e' => __DIR__ . '/..' . '/adbario/php-dot-notation/src/helpers.php',
@@ -67,14 +69,21 @@ class ComposerStaticInit6dda519547dfe7c6e30fdfb1a8ae6b61
         'P' => 
         array (
             'Psr\\SimpleCache\\' => 16,
+            'Psr\\Http\\Server\\' => 16,
             'Psr\\Http\\Message\\' => 17,
             'Psr\\Container\\' => 14,
             'Psr\\Clock\\' => 10,
             'PhpOption\\' => 10,
         ),
+        'O' => 
+        array (
+            'Opis\\Closure\\' => 13,
+        ),
         'L' => 
         array (
+            'League\\Route\\' => 13,
             'League\\Container\\' => 17,
+            'Laminas\\HttpHandlerRunner\\' => 26,
             'Laminas\\Diactoros\\' => 18,
         ),
         'I' => 
@@ -86,6 +95,10 @@ class ComposerStaticInit6dda519547dfe7c6e30fdfb1a8ae6b61
         'G' => 
         array (
             'GrahamCampbell\\ResultType\\' => 26,
+        ),
+        'F' => 
+        array (
+            'FastRoute\\' => 10,
         ),
         'D' => 
         array (
@@ -206,10 +219,15 @@ class ComposerStaticInit6dda519547dfe7c6e30fdfb1a8ae6b61
         array (
             0 => __DIR__ . '/..' . '/psr/simple-cache/src',
         ),
+        'Psr\\Http\\Server\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/http-server-handler/src',
+            1 => __DIR__ . '/..' . '/psr/http-server-middleware/src',
+        ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Container\\' => 
         array (
@@ -223,9 +241,21 @@ class ComposerStaticInit6dda519547dfe7c6e30fdfb1a8ae6b61
         array (
             0 => __DIR__ . '/..' . '/phpoption/phpoption/src/PhpOption',
         ),
+        'Opis\\Closure\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/opis/closure/src',
+        ),
+        'League\\Route\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/league/route/src',
+        ),
         'League\\Container\\' => 
         array (
             0 => __DIR__ . '/..' . '/league/container/src',
+        ),
+        'Laminas\\HttpHandlerRunner\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/laminas/laminas-httphandlerrunner/src',
         ),
         'Laminas\\Diactoros\\' => 
         array (
@@ -249,6 +279,10 @@ class ComposerStaticInit6dda519547dfe7c6e30fdfb1a8ae6b61
         'GrahamCampbell\\ResultType\\' => 
         array (
             0 => __DIR__ . '/..' . '/graham-campbell/result-type/src',
+        ),
+        'FastRoute\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/nikic/fast-route/src',
         ),
         'Dotenv\\' => 
         array (
@@ -300,9 +334,9 @@ class ComposerStaticInit6dda519547dfe7c6e30fdfb1a8ae6b61
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit6dda519547dfe7c6e30fdfb1a8ae6b61::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit6dda519547dfe7c6e30fdfb1a8ae6b61::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit6dda519547dfe7c6e30fdfb1a8ae6b61::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitb2637bfdc9c35c32da5e88c416ac7c36::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitb2637bfdc9c35c32da5e88c416ac7c36::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitb2637bfdc9c35c32da5e88c416ac7c36::$classMap;
 
         }, null, ClassLoader::class);
     }

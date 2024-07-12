@@ -1,12 +1,15 @@
 <?php
 
 use App\Core\App;
+use Dotenv\Dotenv;
 use App\Core\Config;
 use App\Core\Container;
-use App\Providers\ConfigServiceProvider;
-use Dotenv\Dotenv;
+use League\Route\Router;
 use Laminas\Diactoros\Request;
+use Laminas\Diactoros\Response;
+use App\Providers\ConfigServiceProvider;
 use League\Container\ReflectionContainer;
+use Laminas\HttpHandlerRunner\Emitter\SapiEmitter;
 
 error_reporting(0);
 
@@ -28,10 +31,22 @@ foreach ($config->get('app.providers') as $provider) {
     $container->addServiceProvider(new $provider);
 }
 
-var_dump($container->get(Request::class));
-
-die();
 
 $app = new App;
+
+$router = $container->get(Router::class);
+
+$router->get('/', function() {
+    $response = new Response();
+
+    $response->getBody()->write('Home');
+
+    return $response;
+});
+
+
+$response = $router->dispatch($container->get(Request::class));
+
+(new SapiEmitter())->emit($response);
 
 $app->run();
