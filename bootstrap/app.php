@@ -15,10 +15,13 @@ $container->delegate(new ReflectionContainer());
 
 $container->addServiceProvider(new ConfigServiceProvider());
 
-$container->addServiceProvider(new AppServiceProvider());
+$config = $container->get(Config::class);
 
-var_dump($container->get(Config::class)->get('database.name'));
-die();
+foreach ($config->get('app.providers') as $provider) {
+    $container->addServiceProvider(new $provider);
+}
+
+
 
 $app = new App;
 
