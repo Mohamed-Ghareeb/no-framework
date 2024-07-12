@@ -5,6 +5,7 @@ use App\Core\Config;
 use App\Core\Container;
 use App\Providers\ConfigServiceProvider;
 use Dotenv\Dotenv;
+use Laminas\Diactoros\Request;
 use League\Container\ReflectionContainer;
 
 error_reporting(0);
@@ -27,7 +28,9 @@ foreach ($config->get('app.providers') as $provider) {
     $container->addServiceProvider(new $provider);
 }
 
+var_dump($container->get(Request::class));
 
+die();
 
 $app = new App;
 
