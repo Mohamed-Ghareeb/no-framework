@@ -17,7 +17,7 @@ $container->addServiceProvider(new ConfigServiceProvider());
 
 $container->addServiceProvider(new AppServiceProvider());
 
-var_dump($container->get(Config::class)->get('app.name'));
+var_dump($container->get(Config::class)->get('database.name'));
 die();
 
 $app = new App;
