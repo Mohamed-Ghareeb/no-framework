@@ -32,11 +32,9 @@ foreach ($config->get('app.providers') as $provider) {
 }
 
 
-$app = new App;
+$app = new App($container);
 
-$router = $container->get(Router::class);
-
-$router->get('/', function() {
+$app->getRouter()->get('/', function() {
     $response = new Response();
 
     $response->getBody()->write('Home');
@@ -44,9 +42,5 @@ $router->get('/', function() {
     return $response;
 });
 
-
-$response = $router->dispatch($container->get(Request::class));
-
-(new SapiEmitter())->emit($response);
 
 $app->run();
