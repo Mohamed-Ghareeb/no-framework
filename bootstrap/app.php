@@ -2,7 +2,7 @@
 
 use App\Core\App;
 use Dotenv\Dotenv;
-use App\Core\Config;
+use App\Config\Config;
 use App\Core\Container;
 use League\Route\Router;
 use Laminas\Diactoros\Request;

@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Core\Config;
+use App\Config\Config;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use League\Container\ServiceProvider\BootableServiceProviderInterface;
 
