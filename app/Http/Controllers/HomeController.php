@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 use App\Config\Config;
 use App\Views\View;
 use Laminas\Diactoros\Response;
-
-
 class HomeController 
 {
     public function __construct(
@@ -15,11 +13,13 @@ class HomeController
 
     public function __invoke()
     {
-       var_dump($this->view);
-       die();
         $response = new Response();
 
-        $response->getBody()->write($this->config->get('app.name'));
+        $response->getBody()->write(
+            $this->view->render('home.twig', [
+                'title' => $this->config->get('app.name')
+            ])
+        );
 
         return $response;   
     }
