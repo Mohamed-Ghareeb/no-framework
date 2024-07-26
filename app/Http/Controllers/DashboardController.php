@@ -1,13 +1,11 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Config\Config;
 use App\Views\View;
 use Laminas\Diactoros\Response;
-class HomeController 
+class DashboardController 
 {
     public function __construct(
-        protected Config $config,
         protected View $view,
     ) {}
 
@@ -16,7 +14,7 @@ class HomeController
         $response = new Response();
 
         $response->getBody()->write(
-            $this->view->render('home.twig')
+            $this->view->render('dashboard.twig')
         );
 
         return $response;   
