@@ -10,7 +10,8 @@ class TwigExtension extends AbstractExtension
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('config', [TwigRunTimeExtension::class, 'config'])
+            new TwigFunction('config', [TwigRunTimeExtension::class, 'config']),
+            new TwigFunction('auth', [TwigRunTimeExtension::class, 'auth'])
         ];
     }
 }
