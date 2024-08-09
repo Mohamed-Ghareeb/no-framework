@@ -4,12 +4,8 @@ use App\Core\App;
 use Dotenv\Dotenv;
 use App\Config\Config;
 use App\Core\Container;
-use League\Route\Router;
-use Laminas\Diactoros\Request;
-use Laminas\Diactoros\Response;
 use App\Providers\ConfigServiceProvider;
 use League\Container\ReflectionContainer;
-use Laminas\HttpHandlerRunner\Emitter\SapiEmitter;
 
 error_reporting(0);
 
