@@ -10,11 +10,20 @@
     <div>
         <label for="email">Email</label>
         <input type="text" name="email" id="email">
+        {% if errors.email %}
+            <div style="color: red;">{{ errors.email }}</div>
+        {% endif %}
     </div>
     <div>
         <label for="password">Password</label>
         <input type="password" name="password" id="password">
+        {% if errors.password %}
+            <div style="color: red;">{{ errors.password }}</div>
+        {% endif %}
     </div>
+        {% if errors.wrong_credentials %}
+            <div style="color: red;">{{ errors.wrong_credentials }}</div>
+        {% endif %}
     <button type="submit">Save</button>
 </form>
 

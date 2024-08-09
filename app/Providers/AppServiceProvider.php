@@ -18,6 +18,7 @@ class AppServiceProvider extends AbstractServiceProvider implements BootableServ
 
     public function register(): void
     {
+ 
     }
 
     public function provides(string $id): bool
