@@ -7,29 +7,30 @@ use Laminas\Diactoros\Response;
 use Laminas\Diactoros\Response\RedirectResponse;
 use Psr\Http\Message\ServerRequestInterface;
 
-class RegisterController 
+class LoginController 
 {
     public function __construct(
         protected View $view,
         protected Sentinel $auth,
     ) {}
 
-    public function registerForm()
+    public function loginForm()
     {
         $response = new Response();
 
         $response->getBody()->write(
-            $this->view->render('auth/register.twig')
+            $this->view->render('auth/login.twig')
         );
 
         return $response;   
     }
 
-    public function register(ServerRequestInterface $request)
+    public function login(ServerRequestInterface $request)
     {
-       if($user = $this->auth->registerAndActivate($request->getParsedBody())) {
-            $this->auth->login($user);
-       }
+        if(!$this->auth->authenticate($request->getParsedBody())) {
+            return new RedirectResponse('/login');
+        }
+       
         return new RedirectResponse('/dashboard');
     }
 }
