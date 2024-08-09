@@ -4,7 +4,6 @@
 
 {% block content %}
     <h1>Home</h1>
-
     <div>
         {% for user in users %}
             <div><a href="/users/{{ user.id }}">{{ user.first_name }}</a></div>
