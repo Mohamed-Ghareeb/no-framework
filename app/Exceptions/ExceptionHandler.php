@@ -14,6 +14,7 @@ class ExceptionHandler
             $response->getBody()->write($view);
             return $response;
         }
+        throw $e;
     }
 
     public function getErrorView(\Throwable $e) 
