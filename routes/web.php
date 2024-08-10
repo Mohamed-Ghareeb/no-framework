@@ -8,12 +8,14 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Middleware\FlashOldData;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Middleware\RedirectIfGuest;
 use League\Route\RouteGroup;
 
 return static function (Router $router, ContainerInterface $container) {
     $router->middleware($container->get('csrf'));
+    $router->middleware(new FlashOldData());
 
     $router->get('/', HomeController::class);
 

@@ -9,7 +9,7 @@
     {{ csrf() | raw }}
     <div>
         <label for="email">Email</label>
-        <input type="text" name="email" id="email">
+        <input type="text" name="email" id="email" value="{{ old('email') }}">
         {% if errors.email %}
             <div style="color: red;">{{ errors.email }}</div>
         {% endif %}
