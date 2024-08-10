@@ -14,12 +14,11 @@ class DatabaseServiceProvider extends AbstractServiceProvider implements Bootabl
 
     public function boot(): void
     {
-        $config = $this->getContainer()->get(Config::class);
         $capsule = new Manager();
-        $driver = $config->get('database.driver');
+        $driver = config('database.driver');
 
         $capsule->addConnection(
-            $config->get('database.' . $driver),
+            config('database.' . $driver),
             $driver
         );
 

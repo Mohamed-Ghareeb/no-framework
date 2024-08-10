@@ -1,34 +1,18 @@
 <?php
 namespace App\Http\Controllers\Auth;
 
-use App\Views\View;
-use Laminas\Diactoros\Response;
-use Cartalyst\Sentinel\Sentinel;
 use Respect\Validation\Validator as v;
 use Psr\Http\Message\ServerRequestInterface;
 use Laminas\Diactoros\Response\RedirectResponse;
 use Respect\Validation\Exceptions\ValidatorException;
-use Symfony\Component\HttpFoundation\Session\Session;
 
 class RegisterController 
 {
-    public function __construct(
-        protected View $view,
-        protected Sentinel $auth,
-        protected Session $session,
-    ) {}
-
     public function registerForm()
     {
-        $response = new Response();
-
-        $response->getBody()->write(
-            $this->view->render('auth/register.twig', [
-                'errors' =>  $this->session->getFlashBag()->get('errors')[0] ?? null
-            ])
-        );
-
-        return $response;   
+        return view('auth/register.twig', [
+            'errors' => session()->get('errors')[0] ?? null
+        ]);
     }
 
     public function register(ServerRequestInterface $request)
@@ -40,12 +24,12 @@ class RegisterController
                 ->key('password', v::notEmpty())
                 ->assert($request->getParsedBody());
         } catch (ValidatorException $e) {
-            $this->session->getFlashBag()->add('errors', $e->getMessages());
-            return new RedirectResponse('/register');
+            session()->add('errors', $e->getMessages());
+            return new RedirectResponse(route('registerForm'));
         }
-       if($user = $this->auth->registerAndActivate($request->getParsedBody())) {
-            $this->auth->login($user);
+       if($user = auth()->registerAndActivate($request->getParsedBody())) {
+            auth()->login($user);
        }
-        return new RedirectResponse('/dashboard');
+        return new (route('dashboard'));
     }
 }

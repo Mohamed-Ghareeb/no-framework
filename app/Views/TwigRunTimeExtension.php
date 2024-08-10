@@ -3,28 +3,23 @@
 namespace App\Views;
 
 use App\Config\Config;
-use Cartalyst\Sentinel\Sentinel;
-use Psr\Container\ContainerInterface;
-use Symfony\Component\HttpFoundation\Session\Session;
 use Twig\Extension\AbstractExtension;
 
 class TwigRunTimeExtension extends AbstractExtension
 {
-    public function __construct(protected ContainerInterface $container) {}
-
     public function config()
     {
-        return $this->container->get(Config::class);
+        return app(Config::class);
     }
 
     public function auth()
     {
-        return $this->container->get(Sentinel::class);
+        return auth();
     }
 
     public function csrf()
     {
-        $guard = $this->container->get('csrf');
+        $guard = app('csrf');
         return
             '
             <input type="hidden" name="' . $guard->getTokenNameKey() . '" value="' . $guard->getTokenName() . '">
@@ -34,11 +29,16 @@ class TwigRunTimeExtension extends AbstractExtension
 
     public function session()
     {
-        return $this->container->get(Session::class);
+        return session();
     }
 
     public function old(string $key)
     {
-        return $this->session()->getFlashBag()->peek('old')[$key] ?? null;
+        return $this->session()->peek('old')[$key] ?? null;
+    }
+
+    public function route(string $name, array $arguments = [])
+    {
+        return route($name, $arguments);
     }
 }

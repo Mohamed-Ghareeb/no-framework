@@ -8,7 +8,7 @@
 		{% if users is not empty %}
 			{% for user in users %}
                 <div>
-                    <a href="/users/{{ user.id }}">{{ user.first_name }}</a>
+                    <a href="{{ route('users.show', { 'user': user.id } ) }}">{{ user.first_name }}</a>
 				</div>
 			{% endfor %}
 

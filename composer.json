@@ -2,7 +2,8 @@
     "autoload": {
         "psr-4": {
             "App\\": "app/"
-        }
+        },
+        "files": ["app/Helpers/main.php"]
     },
     "require": {
         "spatie/ignition": "^1.15",

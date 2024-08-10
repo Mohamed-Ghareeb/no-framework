@@ -1,13 +1,11 @@
 <?php
 namespace App\Exceptions;
 
-use App\Views\View;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
 class ExceptionHandler
 {
-    public function __construct(protected View $view) {}
     public function handle(ServerRequestInterface $request, ResponseInterface $response, \Throwable $e)
     {
         if($view = $this->getErrorView($e)) {
@@ -25,10 +23,10 @@ class ExceptionHandler
         
         $view = 'errors/' . $e->getStatusCode() . '.twig';
 
-        if(!$this->view->exists($view)) {
+        if(!view($view)) {
             return null;
         }
 
-        return $this->view->render($view);
+        return view($view);
     }
 }

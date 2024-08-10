@@ -1,16 +1,16 @@
 <ul>
     <li>
-        <a href="/">Home</a>
+        <a href="{{ route('home') }}">Home</a>
     </li>
     {% if auth().check() %}
         <li>
-            <a href="/dashboard">Dashboard</a>
+            <a href="{{ route('dashboard') }}">Dashboard</a>
         </li>
         <li>
             {{ auth().user().first_name }}
         </li>
         <li>
-            <form action="/logout" method="post">
+            <form action="{{ route('logout') }}" method="post">
                 {{ csrf() | raw }}
                 <button type="submit">Log out</button>
             </form>
@@ -18,10 +18,10 @@
     {% endif %}
     {% if not auth().check() %}
         <li>
-            <a href="/register">Register</a>
+            <a href="{{ route('registerForm') }}">Register</a>
         </li>
         <li>
-            <a href="/login">Login</a>
+            <a href="{{ route('loginForm') }}">Login</a>
         </li>
     {% endif %}
 

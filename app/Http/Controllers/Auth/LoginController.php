@@ -2,34 +2,17 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Views\View;
-use Cartalyst\Sentinel\Sentinel;
-use Laminas\Diactoros\Response;
 use Laminas\Diactoros\Response\RedirectResponse;
 use Psr\Http\Message\ServerRequestInterface;
 use Respect\Validation\Exceptions\ValidatorException;
 use Respect\Validation\Validator as v;
-use Symfony\Component\HttpFoundation\Session\Session;
-
 class LoginController
 {
-    public function __construct(
-        protected View $view,
-        protected Sentinel $auth,
-        protected Session $session,
-    ) {}
-
     public function loginForm()
     {
-        $response = new Response();
-
-        $response->getBody()->write(
-            $this->view->render('auth/login.twig', [
-                'errors' =>  $this->session->getFlashBag()->get('errors')[0] ?? null
-            ]),
-        );
-
-        return $response;
+        return  view('auth/login.twig', [
+            'errors' =>  session()->get('errors')[0] ?? null
+        ]);
     }
 
     public function login(ServerRequestInterface $request)
@@ -39,18 +22,18 @@ class LoginController
                 ->key('password', v::notEmpty())
                 ->assert($request->getParsedBody());
         } catch (ValidatorException $e) {
-            $this->session->getFlashBag()->add('errors', $e->getMessages());
-            return new RedirectResponse('/login');
+            session()->add('errors', $e->getMessages());
+            return new RedirectResponse(route('loginForm'));
         }
 
-        if (!$this->auth->authenticate($request->getParsedBody())) {
-            $this->session->getFlashBag()->add('errors', [
+        if (!auth()->authenticate($request->getParsedBody())) { 
+            session()->add('errors', [
                 'wrong_credentials' => 'You enter wrong credentials'
             ]);
 
-            return new RedirectResponse('/login');
+            return new RedirectResponse(route('loginForm'));
         }
 
-        return new RedirectResponse('/dashboard');
+        return new RedirectResponse((route('dashboard')));
     }
 }

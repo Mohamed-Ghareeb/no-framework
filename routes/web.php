@@ -17,24 +17,22 @@ return static function (Router $router, ContainerInterface $container) {
     $router->middleware($container->get('csrf'));
     $router->middleware(new FlashOldData());
 
-    $router->get('/', HomeController::class);
+    $router->get('/', HomeController::class)->setName('home');
 
     $router->group('/', function (RouteGroup $route) {
-        $route->get('/register', [RegisterController::class, 'registerForm'])
-            ->middleware(new RedirectIfAuthenticated());
-        $route->post('/register', [RegisterController::class, 'register']);
+        $route->get('/register', [RegisterController::class, 'registerForm'])->setName('registerForm');
+        $route->post('/register', [RegisterController::class, 'register'])->setName('register');
     
-        $route->get('/login', [LoginController::class, 'loginForm']);
-        $route->post('/login', [LoginController::class, 'login']);
+        $route->get('/login', [LoginController::class, 'loginForm'])->setName('loginForm');
+        $route->post('/login', [LoginController::class, 'login'])->setName('login');
     })
     ->middleware(new RedirectIfAuthenticated());
 
     $router->group('/', function (RouteGroup $route) {
-        $route->get('/dashboard', DashboardController::class)
-            ->middleware(new RedirectIfGuest());
-        $route->post('/logout', LogoutController::class);
+        $route->get('/dashboard', DashboardController::class)->setName('dashboard');
+        $route->post('/logout', LogoutController::class)->setName('logout');;
     })
     ->middleware(new RedirectIfGuest());
 
-    $router->get('/users/{user}', UserController::class);
+    $router->get('/users/{user}', UserController::class)->setName('users.show');
 };
