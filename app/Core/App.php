@@ -32,7 +32,7 @@ class App
         try {
             $response = $this->router->dispatch($this->request);
         } catch (\Throwable $e) {
-            # code...
+            throw $e;
         }
 
         (new SapiEmitter())->emit(
